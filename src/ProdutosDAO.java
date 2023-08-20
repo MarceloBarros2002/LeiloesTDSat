@@ -52,39 +52,27 @@ public class ProdutosDAO {
         
     }
     
-    public List<ProdutosDTO> listarProdutos(String filtro){
-        String sql = "select * from produtos";
-        if(!filtro.isEmpty())
-        {
-            sql = sql + "where nome like?";
-        }
-        try
-        {
+    public List<ProdutosDTO> listarProdutos(){
+        conn = new conectaDAO().connecta();
+        String sql = "SELECT * FROM produtos";
+        try {
             st = conn.prepareStatement(sql);
-            
-            if(!filtro.isEmpty())
-            {
-                st.setString(1, "%" + filtro + "%");
-            }
             rs = st.executeQuery();
-            
-            List<ProdutosDTO>  listarProdutos = new ArrayList<>();
-            
-            while(rs.next())
-            {
-                ProdutosDTO produto = new ProdutosDTO();
-                produto.setNome(rs.getString("nome"));
-                produto.setValor(rs.getString("valor"));
-                produto.setStatus(rs.getString("status"));
-                listarProdutos.add(produto);
+
+            List<ProdutosDTO> listProdutos = new ArrayList<>();
+
+            while (rs.next()) {
+                ProdutosDTO produtosDTO = new ProdutosDTO();
+
+                produtosDTO.setId(rs.getInt("id"));
+                produtosDTO.setNome(rs.getString("nome"));
+                produtosDTO.setValor(rs.getString("valor"));
+                produtosDTO.setStatus(rs.getString("status"));
+
+                listProdutos.add(produtosDTO);
             }
-            
-            return listarProdutos;
-        }
-            
-        catch(SQLException ex)
-        {
-            System.out.println("Erro de conexão: " + ex.getMessage());
+            return listProdutos;
+        } catch (Exception e) {
             return null;
         }
         }}
