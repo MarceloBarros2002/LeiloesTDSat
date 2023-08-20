@@ -8,12 +8,12 @@
  * @author Adm
  */
 public class ProdutosDTO {
-    private Integer id;
+    private int id;
     private String nome;
-    private Integer valor;
+    private String valor;
     private String status;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -21,7 +21,7 @@ public class ProdutosDTO {
         return nome;
     }
 
-    public Integer getValor() {
+    public String getValor() {
         return valor;
     }
 
@@ -29,7 +29,7 @@ public class ProdutosDTO {
         return status;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -37,7 +37,7 @@ public class ProdutosDTO {
         this.nome = nome;
     }
 
-    public void setValor(Integer valor) {
+    public void setValor(String valor) {
         this.valor = valor;
     }
 
